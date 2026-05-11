@@ -1,15 +1,19 @@
 from flask import Flask, request, jsonify
 import requests
 import json
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
 # ============================================================
-#  PASTE YOUR CREDENTIALS HERE (from Meta Developer Dashboard)
+#  CREDENTIALS (Loaded from .env file)
 # ============================================================
-PHONE_NUMBER_ID = "1174001225778019"
-ACCESS_TOKEN    = "EAATbIWLTlk4BRXbrNLX49nB4b9KYyduY8xTBejWqbu69LtuZBM4nE8Y7pQhKow62wjTa2BWR8Ff9SqF7o8J1ET6SxVXceIfxDric2o34DskHkADsgLHllUvx5P2B3zYZCrYlHSsKqZAEJmOQsOhk3kY5K1YrJWRT4NEQmy8jrz07zCV0ZC9ntZCkm7PqTZAuJ3y9tMhhRWqQ0YKhGGnHD7ESbew2ZCix19FkU0tMUVVbUl4ZCkgyBFeCWkujgHsqyaSv3nxc3ZCt0sQbXC61XsKpI"
-VERIFY_TOKEN    = "mybookbot"          # You can change this word
+PHONE_NUMBER_ID = os.getenv("PHONE_NUMBER_ID")
+ACCESS_TOKEN    = os.getenv("ACCESS_TOKEN")
+VERIFY_TOKEN    = os.getenv("VERIFY_TOKEN", "mybookbot")
 # ============================================================
 
 API_URL = f"https://graph.facebook.com/v18.0/{PHONE_NUMBER_ID}/messages"
